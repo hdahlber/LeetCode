@@ -1,17 +1,16 @@
-import functools
-
 class Solution:
    
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        n = len(nums)
+        left = [1]
+        for i in range(len(nums)-1):
+            left.append(left[i]*nums[i])
+       
 
-        @cache
-        def helper(index: int) -> int:
-            result = 1
-            for i in range(n):
-                if i != index:
-                    result *= nums[i]
-            return result
-        
-        return [helper(i) for i in range(n)]
-            
+        right= 1
+        for i in range(len(nums)-1,-1,-1):
+            left[i] = left[i] * right
+            right = right* nums[i]
+
+
+        #print(left)
+        return left
