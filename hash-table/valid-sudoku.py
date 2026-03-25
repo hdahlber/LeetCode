@@ -6,7 +6,7 @@ class Solution:
                 return False
             
             col =[board[r][c] for r in range(9) if board[r][c].isnumeric()]
-            if len(l) != len(set(l)):
+            if len(col) != len(set(col)):
                 return False
         for row in range(3):
             for col in range(3):
@@ -20,3 +20,6 @@ class Solution:
                 if len(box) != len(set(box)):
                     return False
         return True
+
+
+    print(isValidSudoku)
