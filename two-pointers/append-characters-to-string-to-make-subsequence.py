@@ -3,6 +3,7 @@ class Solution:
         i = 0
         while i < len(s) and i < len(t) and s[i] == t[i]:
             i += 1
-        return len(t[:i])
+        print(t[i:])
+        return len(t[i:])
         
         
