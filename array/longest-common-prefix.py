@@ -6,5 +6,5 @@ class Solution:
             for word in strs:
                 if word[i] != strs[0][i]:
                     return strs[0][:i]
-
+        return strs[0]
         
