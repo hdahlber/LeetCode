@@ -1,26 +1,35 @@
 class Solution:
     def sortArray(self, nums: list[int]) -> list[int]:
-        
-        def partition(low, high):
-            random_pivot_index = random.randint(low, high)
-            nums[random_pivot_index], nums[high] = nums[high], nums[random_pivot_index]
-            pivot = nums[high]
-            i = low - 1
-            
-            for j in range(low, high):
-                if nums[j] < pivot:
-                    i += 1
-                    nums[i], nums[j] = nums[j], nums[i]
-            
-            nums[i + 1], nums[high] = nums[high], nums[i + 1]
-            return i + 1
+        if len(nums) <= 1:
+            return nums
+        mid = len(nums) // 2
+        left_half = nums[:mid]
+        right_half = nums[mid:]
 
-        def quick_sort(low, high):
-            if low < high:
-                pi = partition(low, high)
-                quick_sort(low, pi - 1)
-                quick_sort(pi + 1, high)
+        self.sortArray(left_half)
+        self.sortArray(right_half)
 
-        quick_sort(0, len(nums) - 1)
-        
+        i = j = k = 0
+
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] <= right_half[j]:
+                nums[k] = left_half[i]
+                i += 1
+            else:
+                nums[k] = right_half[j]
+                j += 1
+            k += 1
+
+      
+        while i < len(left_half):
+            nums[k] = left_half[i]
+            i += 1
+            k += 1
+
+      
+        while j < len(right_half):
+            nums[k] = right_half[j]
+            j += 1
+            k += 1
+            
         return nums
