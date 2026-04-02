@@ -2,6 +2,8 @@ class Solution:
     def sortArray(self, nums: list[int]) -> list[int]:
         
         def partition(low, high):
+            random_pivot_index = random.randint(low, high)
+            nums[random_pivot_index], nums[high] = nums[high], nums[random_pivot_index]
             pivot = nums[high]
             i = low - 1
             
