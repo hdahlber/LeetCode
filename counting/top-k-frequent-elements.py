@@ -1,14 +1,15 @@
+from heapq import nlargest
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        mydict = {}
+        diction = {}
         for num in nums:
-            if num in mydict:
-                mydict[num] += 1
-            else:
-                mydict[num] = 1
+            try:
+                value = diction[num]
+                diction[num] = value + 1
+            except:
+                diction[num] = 1
+        
+        return nlargest(k, diction, key=diction.get)
 
-        sorted_items = sorted(mydict.items(), key=lambda item: item[1], reverse=True)
-
-        return [key for key, _ in sorted_items[:k]]
 
         
