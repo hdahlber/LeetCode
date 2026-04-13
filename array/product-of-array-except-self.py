@@ -1,16 +1,10 @@
+import math
 class Solution:
-   
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        left = [1]
-        for i in range(len(nums)-1):
-            left.append(left[i]*nums[i])
-       
-
-        right= 1
-        for i in range(len(nums)-1,-1,-1):
-            left[i] = left[i] * right
-            right = right* nums[i]
-
-
-        #print(left)
-        return left
+        F = [nums[0:i] + nums[i+1:] for i in range(len(nums))]
+        print(F)
+        result = []
+        for x in range(len(nums)):
+            nums[x] = math.prod(F[x])
+            print(nums)
+        return nums
